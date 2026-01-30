@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip cowSound;
     [SerializeField] private AudioClip birdSound;
+
+    [Header("Iluminación")]
+    [SerializeField] private Camera mainCamera; // Arrastra la Main Camera aquí
+    [SerializeField] private Color[] lightColors; // Lista de colores en el Inspector
+    private int currentLightIndex = 0;
+    private int lastMilestone = 0;
 
 
     public static GameManager Instance { get; private set; }
@@ -124,6 +131,13 @@ public class GameManager : MonoBehaviour
         scoreTimer += Time.deltaTime;
         score = (int)(scoreTimer * scoreperSecond);
         ScoreText.text = string.Format("{0:00000}", score);
+
+        int milestone = score / 1000;
+        if (milestone > lastMilestone)
+        {
+            lastMilestone = milestone;
+            ChangeLighting();
+        }
     }
 
     private void UpdateSpeed()
@@ -159,6 +173,28 @@ public class GameManager : MonoBehaviour
         else if (tipo == "pajaro" && birdSound != null)
         {
             musicSource.PlayOneShot(birdSound);
+        }
+    }
+
+    private void ChangeLighting()
+    {
+        if (lightColors.Length == 0) return;
+        currentLightIndex = (currentLightIndex + 1) % lightColors.Length;
+
+        StartCoroutine(TransitionColor(lightColors[currentLightIndex]));
+    }
+
+    private IEnumerator TransitionColor(Color targetColor)
+    {
+        Color startColor = mainCamera.backgroundColor;
+        float elapsed = 0f;
+        float duration = 30f; // Duración de la transición en segundos
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            mainCamera.backgroundColor = Color.Lerp(startColor, targetColor, elapsed / duration);
+            yield return null;
         }
     }
 

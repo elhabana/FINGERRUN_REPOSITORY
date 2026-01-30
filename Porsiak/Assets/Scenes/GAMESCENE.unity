@@ -7975,6 +7975,12 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 78a2be6fbfdea954fb9d84195958a51b, type: 3}
   cowSound: {fileID: 8300000, guid: 55c0775aaf192e84dbb8736cee14a805, type: 3}
   birdSound: {fileID: 8300000, guid: ad4c9bd90849d4d4e80e75df7922caff, type: 3}
+  mainCamera: {fileID: 519420031}
+  lightColors:
+  - {r: 0.2794144, g: 0.8421506, b: 0.8584906, a: 0}
+  - {r: 0.85882354, g: 0.56257254, b: 0.27843145, a: 0}
+  - {r: 0.3631636, g: 0.19842473, b: 0.8584906, a: 0}
+  - {r: 0.9054433, g: 0.5050285, b: 0.9150943, a: 0}
 --- !u!114 &1880345809
 MonoBehaviour:
   m_ObjectHideFlags: 0
