@@ -27,82 +27,15 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameStarted => gameStarted;
 
-    void Update()
-    {
-        if (gameStarted)
-        {
-            UpdateScore();
-            UpdateSpeed();
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (MenuSystem.Instance != null)
-            {
-                // Si las opciones están abiertas, llamamos a la función corregida
-                if (MenuSystem.Instance.PanelOptions.activeSelf)
-                {
-                    MenuSystem.Instance.CloseOptions();
-                }
-                // Solo permitimos abrir la pausa si el juego empezó y NO estamos muertos
-                else if (gameStarted && !MenuSystem.Instance.PanelDeadMenu.activeSelf && !MenuSystem.Instance.PanelRanking.activeSelf)
-                {
-                    MenuSystem.Instance.TogglePause();
-                }
-            }
-        }
-    }
-
-
-    public void StartScoring()
-    {
-        gameStarted = true;
-
-       
-        if (ScoreText != null)
-        {
-            ScoreText.gameObject.SetActive(true);
-        }
-
-   
-        if (musicSource != null && backgroundMusic != null)
-        {
-            musicSource.Stop();
-            musicSource.clip = backgroundMusic;
-            musicSource.loop = true;
-            musicSource.Play();
-        }
-    }
-
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-          
         }
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    public void PlayButtonSound()
-    {
-        if (musicSource != null && buttonClickSound != null)
-        {
-            
-            musicSource.PlayOneShot(buttonClickSound);
-        }
-    }
-
-    public void PlayJumpSound()
-    {
-        if (musicSource != null && jumpSound != null)
-        {
-            
-            musicSource.PlayOneShot(jumpSound);
         }
     }
 
@@ -116,13 +49,52 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (gameStarted)
+        {
+            UpdateScore();
+            UpdateSpeed();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (MenuSystem.Instance != null)
+            {
+                // Si el panel de opciones está abierto, lo cerramos
+                if (MenuSystem.Instance.PanelOptions.activeSelf)
+                {
+                    MenuSystem.Instance.CloseOptions();
+                }
+                // Si no hay opciones abiertas, pero estamos jugando y no hemos muerto, abrimos pausa
+                else if (gameStarted && !MenuSystem.Instance.PanelDeadMenu.activeSelf && !MenuSystem.Instance.PanelRanking.activeSelf)
+                {
+                    MenuSystem.Instance.TogglePause();
+                }
+            }
+        }
+    }
+
+    public void StartScoring()
+    {
+        gameStarted = true;
+        if (ScoreText != null) ScoreText.gameObject.SetActive(true);
+
+        if (musicSource != null && backgroundMusic != null)
+        {
+            musicSource.Stop();
+            musicSource.clip = backgroundMusic;
+            musicSource.loop = true;
+            musicSource.Play();
+        }
+    }
+
     public void ShowGameOverPanel()
     {
         if (GameOverPanel != null)
         {
             GameOverPanel.SetActive(true);
 
-            // OCULTAR LA PUNTUACIÓN AL MORIR
             if (ScoreText != null)
             {
                 ScoreText.gameObject.SetActive(false);
@@ -132,7 +104,6 @@ public class GameManager : MonoBehaviour
             {
                 rankingManager.SaveScore(score);
             }
-
         }
 
         if (musicSource != null && gameOverMusic != null)
@@ -147,10 +118,14 @@ public class GameManager : MonoBehaviour
     private void UpdateScore()
     {
         int scoreperSecond = 10;
-
         scoreTimer += Time.deltaTime;
         score = (int)(scoreTimer * scoreperSecond);
         ScoreText.text = string.Format("{0:00000}", score);
+    }
+
+    private void UpdateSpeed()
+    {
+        scroollSpeed = initialScrollSpeed + (scoreTimer / 10f);
     }
 
     public float GetScrollSpeed()
@@ -158,9 +133,15 @@ public class GameManager : MonoBehaviour
         return scroollSpeed;
     }
 
-    private void UpdateSpeed()
+    public void PlayButtonSound()
     {
-        float speeddivider = 10f;
-        scroollSpeed = initialScrollSpeed + scoreTimer / speeddivider;
+        if (musicSource != null && buttonClickSound != null)
+            musicSource.PlayOneShot(buttonClickSound);
     }
-}
+
+    public void PlayJumpSound()
+    {
+        if (musicSource != null && jumpSound != null)
+            musicSource.PlayOneShot(jumpSound);
+    }
+} // <--- Esta es la llave que cierra la clase. Asegúrate de que esté al final.

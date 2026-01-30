@@ -124,14 +124,16 @@ public class MenuSystem : MonoBehaviour
 
     public void OpenRankingFrom(GameObject fromPanel)
     {
-        previousRankingPanel = fromPanel; 
-        fromPanel.SetActive(false);       
+        previousRankingPanel = fromPanel;
+        fromPanel.SetActive(false);
 
         if (PanelRanking != null)
         {
             PanelRanking.SetActive(true);
             RankingManager rm = PanelRanking.GetComponent<RankingManager>();
-            if (rm != null) rm.UpdateUI(rm.GetScores());
+
+            // CORRECCIÓN: Quitamos el (rm.GetScores()) porque UpdateUI ya no pide nada
+            if (rm != null) rm.UpdateUI();
         }
     }
 
