@@ -5066,8 +5066,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 444
-      y: 386
+      x: 4
+      y: 1468
       width: 247
       height: 452
     spriteID: fc6ced4a325716c4083c4cde9ad41863
@@ -9078,7 +9078,7 @@ ScriptedImporter:
     - {x: 299, y: 300}
     - {x: 300, y: 301}
     tessellationDetail: 0
-    uvTransform: {x: 444, y: 386}
+    uvTransform: {x: 4, y: 1468}
     spritePosition: {x: 844, y: 44}
   - name: dedo2
     originalName: 
@@ -9088,8 +9088,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 1468
+      x: 444
+      y: 386
       width: 267
       height: 424
     spriteID: 155e9723519cbd943b4ae58cb56e428d
@@ -12967,8 +12967,8 @@ ScriptedImporter:
     - {x: 286, y: 287}
     - {x: 287, y: 288}
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 1468}
-    spritePosition: {x: 1037, y: 75}
+    uvTransform: {x: 444, y: 386}
+    spritePosition: {x: 1031, y: 75}
   - name: mano
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -17707,7 +17707,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: fc6ced4a325716c4083c4cde9ad41863
     layerID: 15
-    mosaicPosition: {x: 444, y: 386}
+    mosaicPosition: {x: 4, y: 1468}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -17717,7 +17717,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: 155e9723519cbd943b4ae58cb56e428d
     layerID: 13
-    mosaicPosition: {x: 4, y: 1468}
+    mosaicPosition: {x: 444, y: 386}
     flatten: 0
     isImported: 1
     isVisible: 1
