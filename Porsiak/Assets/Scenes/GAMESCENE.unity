@@ -7973,6 +7973,8 @@ MonoBehaviour:
   gameOverMusic: {fileID: 8300000, guid: ff8e8be1db8d1d14a929c8992407289f, type: 3}
   buttonClickSound: {fileID: 8300000, guid: 70b229197d966f74589950e7d6f0870d, type: 3}
   jumpSound: {fileID: 8300000, guid: 78a2be6fbfdea954fb9d84195958a51b, type: 3}
+  cowSound: {fileID: 8300000, guid: 55c0775aaf192e84dbb8736cee14a805, type: 3}
+  birdSound: {fileID: 8300000, guid: ad4c9bd90849d4d4e80e75df7922caff, type: 3}
 --- !u!114 &1880345809
 MonoBehaviour:
   m_ObjectHideFlags: 0

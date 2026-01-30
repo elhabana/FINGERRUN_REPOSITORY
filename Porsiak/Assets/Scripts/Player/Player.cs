@@ -54,6 +54,36 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 1. Probabilidad general (ej: 40% de que suene algo)
+        if (Random.Range(0, 101) <= 40)
+        {
+            // 2. Si es una VACA
+            if (other.gameObject.name.Contains("SensorVaca") || other.gameObject.name.Contains("SensorSalto"))
+            {
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.PlayObstacleSound("vaca");
+                }
+            }
+            // 3. Si es un PÁJARO
+            else if (other.gameObject.name.Contains("SensorPajaro"))
+            {
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.PlayObstacleSound("pajaro");
+                }
+            }
+        }
+
+        // Desactivamos el sensor para no repetir en el mismo salto
+        if (other.gameObject.name.Contains("Sensor"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // 1. EL OBSTÁCULO (Vaca/Enemigo) -> MATA

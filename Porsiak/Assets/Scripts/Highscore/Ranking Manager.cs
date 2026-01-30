@@ -31,7 +31,7 @@ public class RankingManager : MonoBehaviour
     public void SaveScore(int newScore)
     {
         // Si el nombre está vacío, ponemos "Vaca Pro" o "Anónimo"
-        string nameToSave = "Anónimo";
+        string nameToSave = "Anonimo";
         if (nameInputField != null && !string.IsNullOrEmpty(nameInputField.text))
         {
             nameToSave = nameInputField.text;

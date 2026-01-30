@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip gameOverMusic;
     [SerializeField] private AudioClip buttonClickSound;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip cowSound;
+    [SerializeField] private AudioClip birdSound;
+
 
     public static GameManager Instance { get; private set; }
 
@@ -144,4 +147,19 @@ public class GameManager : MonoBehaviour
         if (musicSource != null && jumpSound != null)
             musicSource.PlayOneShot(jumpSound);
     }
+
+    public void PlayObstacleSound(string tipo)
+    {
+        if (musicSource == null) return;
+
+        if (tipo == "vaca" && cowSound != null)
+        {
+            musicSource.PlayOneShot(cowSound);
+        }
+        else if (tipo == "pajaro" && birdSound != null)
+        {
+            musicSource.PlayOneShot(birdSound);
+        }
+    }
+
 } // <--- Esta es la llave que cierra la clase. Asegúrate de que esté al final.
