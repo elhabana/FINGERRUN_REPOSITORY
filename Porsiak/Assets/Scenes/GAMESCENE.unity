@@ -2401,11 +2401,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 85647957320686451, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 17.6
+      value: 17.600006
       objectReference: {fileID: 0}
     - target: {fileID: 85647957320686451, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.0762
+      value: -1.0761986
       objectReference: {fileID: 0}
     - target: {fileID: 821852279692067414, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: m_Name
@@ -2601,7 +2601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2184789095730417939, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.4307
+      value: 0.4306984
       objectReference: {fileID: 0}
     - target: {fileID: 2194311368835060183, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: m_Type
@@ -3097,7 +3097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6046929339421943582, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.399994
+      value: 3.4000244
       objectReference: {fileID: 0}
     - target: {fileID: 6046929339421943582, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3829,7 +3829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8783785980059690013, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3.797104
+      value: -3.7971191
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5181877904527830376, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
@@ -4612,7 +4612,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -40, y: -1.04194}
+  m_Offset: {x: -40, y: 1.054075}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4622,7 +4622,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 6.3254714}
+  m_Size: {x: 1, y: 10.517502}
   m_EdgeRadius: 0
 --- !u!1 &1085095314
 GameObject:

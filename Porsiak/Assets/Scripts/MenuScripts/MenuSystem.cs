@@ -85,28 +85,31 @@ public class MenuSystem : MonoBehaviour
     {
         PanelOptions.SetActive(false);
 
-        
         if (previousPanel != null)
         {
             previousPanel.SetActive(true);
-            
         }
 
-       
-        if (GameManager.Instance != null && GameManager.Instance.IsGameStarted)
+        // SI EL PANEL DE MUERTE ESTÁ ACTIVO:
+        // Mantenemos los obstáculos como triggers para que no choquen mientras ves el ranking/puntuación
+        if (PanelDeadMenu != null && PanelDeadMenu.activeSelf)
         {
-            
-            Time.timeScale = 1f;
-            SetObstaclesTrigger(false);
+            Time.timeScale = 0f; // El tiempo sigue pausado
+            SetObstaclesTrigger(true); // Los obstáculos NO chocan
         }
+        // SI EL JUEGO ESTABA EN MARCHA (SIN MORIR):
+        else if (GameManager.Instance != null && GameManager.Instance.IsGameStarted)
+        {
+            Time.timeScale = 1f;
+            SetObstaclesTrigger(false); // Los obstáculos vuelven a ser sólidos
+        }
+        // SI ESTAMOS EN EL MENÚ PRINCIPAL:
         else
         {
-            
             Time.timeScale = 1f;
-            SetObstaclesTrigger(true);
+            SetObstaclesTrigger(true); // Siguen siendo triggers en el menú principal
         }
 
-        
         previousPanel = null;
     }
 

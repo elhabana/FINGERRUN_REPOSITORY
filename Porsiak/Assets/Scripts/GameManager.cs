@@ -40,14 +40,14 @@ public class GameManager : MonoBehaviour
         {
             if (MenuSystem.Instance != null)
             {
-                // Si el panel ya está abierto, lo cerramos (un-pause)
+                // Si las opciones están abiertas, llamamos a la función corregida
                 if (MenuSystem.Instance.PanelOptions.activeSelf)
                 {
                     MenuSystem.Instance.CloseOptions();
                 }
-                else
+                // Solo permitimos abrir la pausa si el juego empezó y NO estamos muertos
+                else if (gameStarted && !MenuSystem.Instance.PanelDeadMenu.activeSelf && !MenuSystem.Instance.PanelRanking.activeSelf)
                 {
-                    // Si está cerrado, lo abrimos sin pasarle ningún panel previo
                     MenuSystem.Instance.TogglePause();
                 }
             }
