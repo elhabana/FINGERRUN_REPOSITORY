@@ -9174,7 +9174,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESTART
+  m_text: MENU
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17dfff3d368a269409b3acbaef8bb52c, type: 2}
   m_sharedMaterial: {fileID: 8206584315184215497, guid: 17dfff3d368a269409b3acbaef8bb52c, type: 2}
