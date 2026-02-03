@@ -7965,7 +7965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   GameOverPanel: {fileID: 921114310}
   ScoreText: {fileID: 757254581}
-  initialScrollSpeed: 8
+  initialScrollSpeed: 9
   rankingManager: {fileID: 1880345813}
   musicSource: {fileID: 1880345812}
   menuMusic: {fileID: 8300000, guid: a19552274fc89d940bd2e6890b4978c4, type: 3}
