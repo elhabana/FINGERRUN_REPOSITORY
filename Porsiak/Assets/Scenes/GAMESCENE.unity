@@ -3212,7 +3212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5126170542969138171, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FullScreenOn
+      value: SetFullScreen
       objectReference: {fileID: 0}
     - target: {fileID: 5126170542969138171, guid: a43d675c2709c5344a130b69c4a2ce95, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
