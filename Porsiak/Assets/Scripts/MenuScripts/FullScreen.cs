@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System.Linq; // Añadimos esto para poder ordenar fácilmente
 
 public class FullScreen : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class FullScreen : MonoBehaviour
     {
         SetupResolutions();
 
-        // Cargar estado de Pantalla Completa
         bool isFull = PlayerPrefs.GetInt("IsFullScreen", 1) == 1;
         Screen.fullScreen = isFull;
         if (toggle != null) toggle.isOn = isFull;
@@ -25,41 +25,47 @@ public class FullScreen : MonoBehaviour
         Resolution[] allResolutions = Screen.resolutions;
         resolutionsDropDown.ClearOptions();
 
-        List<Resolution> uniqueResolutions = new List<Resolution>();
-        List<string> options = new List<string>();
+        List<Resolution> filteredList = new List<Resolution>();
 
+        // 1. Filtrar por 16:9
         for (int i = 0; i < allResolutions.Length; i++)
         {
-            bool exists = false;
-            for (int j = 0; j < uniqueResolutions.Count; j++)
+            float aspectRatio = (float)allResolutions[i].width / allResolutions[i].height;
+            if (Mathf.Abs(aspectRatio - (16f / 9f)) < 0.01f)
             {
-                if (uniqueResolutions[j].width == allResolutions[i].width &&
-                    uniqueResolutions[j].height == allResolutions[i].height)
-                {
-                    if (allResolutions[i].refreshRateRatio.value > uniqueResolutions[j].refreshRateRatio.value)
-                    {
-                        uniqueResolutions[j] = allResolutions[i];
-                    }
-                    exists = true;
-                    break;
-                }
-            }
-
-            if (!exists)
-            {
-                uniqueResolutions.Add(allResolutions[i]);
+                filteredList.Add(allResolutions[i]);
             }
         }
 
-        resolutions = uniqueResolutions.ToArray();
+        // 2. Ordenar de mayor a menor (Ancho primero, luego Hz)
+        // Usamos OrderByDescending para que las más altas salgan arriba
+        List<Resolution> sortedList = filteredList
+            .OrderByDescending(res => res.width)
+            .ThenByDescending(res => res.refreshRateRatio.value)
+            .ToList();
+
+        // Si no hay 16:9, usamos todas (pero también las ordenamos)
+        if (sortedList.Count == 0)
+        {
+            sortedList = allResolutions
+                .OrderByDescending(res => res.width)
+                .ThenByDescending(res => res.refreshRateRatio.value)
+                .ToList();
+        }
+
+        resolutions = sortedList.ToArray();
+        List<string> options = new List<string>();
         int currentResIndex = 0;
         int savedIndex = PlayerPrefs.GetInt("resolutionIndex", -1);
 
+        // 3. Crear los textos para el Dropdown
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
+            float refreshRate = (float)resolutions[i].refreshRateRatio.value;
+            string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + Mathf.Round(refreshRate) + "Hz";
             options.Add(option);
 
+            // Intentar detectar la resolución actual si no hay nada guardado
             if (savedIndex == -1)
             {
                 if (resolutions[i].width == Screen.currentResolution.width &&
@@ -71,8 +77,8 @@ public class FullScreen : MonoBehaviour
         }
 
         resolutionsDropDown.AddOptions(options);
-        int finalIndex = (savedIndex != -1) ? savedIndex : currentResIndex;
 
+        int finalIndex = (savedIndex != -1) ? savedIndex : currentResIndex;
         resolutionsDropDown.value = Mathf.Clamp(finalIndex, 0, resolutions.Length - 1);
         resolutionsDropDown.RefreshShownValue();
     }
